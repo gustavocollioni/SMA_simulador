@@ -66,8 +66,13 @@ def simular_fila(num_servidores, capacidade_fila, intervalo_chegada_min, interva
     count = num_pseudoaleatorios
     while count > 0 and eventos:
         evento = eventos.pop(0)
-        servidores_ocupados = fila if fila < num_servidores else num_servidores
 
+        if fila < num_servidores:
+            servidores_ocupados = fila
+        else:
+            servidores_ocupados = num_servidores
+        
+        
         if evento['tipo'] == 'chegada':
             chegada(evento, servidores_ocupados, capacidade_fila, num_servidores, intervalo_chegada_min, intervalo_chegada_max)
         elif evento['tipo'] == 'saida':
